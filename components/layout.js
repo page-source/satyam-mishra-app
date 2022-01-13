@@ -3,8 +3,8 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name = 'Priyanka Shukla'
-export const siteTitle = 'Priyanka Shukla | UX Designer'
+const name = 'Satyam Mishra'
+export const siteTitle = 'Satyam Mishra | Front End Developer'
 
 export default function Layout({ children, home }) {
   return (
@@ -13,7 +13,7 @@ export default function Layout({ children, home }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Priyanka Shukla Portfolio Website"
+          content="Satyam Mishra Website"
         />
         <meta
           property="og:image"
@@ -28,7 +28,7 @@ export default function Layout({ children, home }) {
         {home ? (
           <>
             <img
-              width='160px'
+              width='150px'
               height='200px'
               src="/images/profile.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
@@ -41,7 +41,7 @@ export default function Layout({ children, home }) {
             <Link href="/">
               <a>
                 <img
-                  width='160px'
+                  width='150px'
                   height='200px'
                   src="/images/profile.jpg"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
