@@ -1,20 +1,25 @@
-import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import { useState } from 'react';
+import Head from 'next/head';
+import styles from './layout.module.css';
+import utilStyles from '../styles/utils.module.css';
+import Link from 'next/link';
+import Navigation from './Navigation';
+import Introduction from './Introduction';
+import Experience from './Experience';
+import Contact from './Contact';
+import Projects from './Projects';
 
-const name = 'Satyam Mishra'
-export const siteTitle = 'Satyam Mishra | Front End Developer'
+const name = 'Satyam Mishra';
+export const siteTitle = 'Satyam Mishra | Front End Developer';
 
 export default function Layout({ children, home }) {
+  const [itemToShow, setItem] = useState(1);
+
   return (
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Satyam Mishra Website"
-        />
+        <meta name="description" content="Satyam Mishra Website" />
         <meta
           property="og:image"
           content={`https://og-image.now.sh/${encodeURI(
@@ -28,8 +33,8 @@ export default function Layout({ children, home }) {
         {home ? (
           <>
             <img
-              width='150px'
-              height='200px'
+              width="150px"
+              height="200px"
               src="/images/profile.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
@@ -39,32 +44,27 @@ export default function Layout({ children, home }) {
         ) : (
           <div>
             <Link href="/">
-              <a>
-                <img
-                  width='150px'
-                  height='200px'
-                  src="/images/profile.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                  alt={name}
-                />
-              </a>
+              <img
+                width="150px"
+                height="200px"
+                src="/images/profile.jpg"
+                className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+                alt={name}
+              />
             </Link>
             <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
+              <Link className={utilStyles.colorInherit} href="/">
+                {name}
               </Link>
             </h2>
           </div>
         )}
       </header>
-      <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
+      <Navigation onClick={setItem} />
+      {itemToShow === 1 && <Introduction />}
+      {itemToShow === 2 && <Experience />}
+      {itemToShow === 3 && <Projects />}
+      {itemToShow === 4 && <Contact />}
     </div>
-  )
+  );
 }
