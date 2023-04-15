@@ -27,7 +27,7 @@
 
 .tabLabel {
   display: flex;
-  padding: 1em;
+  padding: 1em 1em 0 1em;
   color: rgb(75, 104, 233);
   background: #ffffff;
   font-weight: bold;
@@ -48,7 +48,7 @@
 
 .tabContent {
   max-height: 0;
-  padding: 0 0 0 3em;
+  padding: 1em 0 0 3em;
   color: #2c3e50;
   background: white;
   transition: all 0.5s;

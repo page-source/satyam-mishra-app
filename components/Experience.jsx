@@ -20,7 +20,6 @@ export default function Experience({ allPostsData }) {
           HomeStyles.experiencePage
         )}
       >
-        <h2 className={utilStyles.headingLg}>My Experience</h2>
         <div class={accordion.tabs}>
           {workEx.map(({ title, dateRange, index, contributions }) => (
             <div className={accordion.tab} key={title}>
