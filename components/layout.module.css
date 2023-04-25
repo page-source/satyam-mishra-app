@@ -1,13 +1,24 @@
 .container {
-  max-width: 40rem;
+  max-width: 50rem;
   padding: 0 1rem;
   margin: 3rem auto 6rem;
+  display: flex;
 }
 
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container .col1 {
+  padding-left: 5rem;
+  flex: 1 1;
+}
+
+.container .col2 {
+  padding-left: 5rem;
+  flex: 2 2;
 }
 
 .headerImage {
@@ -20,6 +31,20 @@
   height: 10rem;
 }
 
+.headerHomeImage ~ h1 {
+  text-align: center;
+}
+
 .backToHome {
   margin: 3rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .container .col2 {
+    padding-left: 1rem;
+  }
 }
