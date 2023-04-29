@@ -2,21 +2,20 @@ import classnames from 'classnames';
 import HomeStyles from '../styles/Home.module.css';
 import utilStyles from '../styles/utils.module.css';
 import accordion from '../styles/accordion.module.css';
+import workEx from '../components/textJson/workEx';
+import Layout from '../components/layout';
 
-import Link from 'next/link';
-import workEx from './workEx';
-import { useState } from 'react';
 
 export default function Experience({ allPostsData }) {
   console.log(typeof workEx);
 
   return (
-    <>
+    <Layout>
       <div
         className={classnames(
           HomeStyles.mainContent,
           utilStyles.headingMd,
-          utilStyles.padding1px,
+          // utilStyles.padding1px,
           HomeStyles.experiencePage
         )}
       >
@@ -27,18 +26,20 @@ export default function Experience({ allPostsData }) {
               <label className={accordion.tabLabel} for={title}>
                 {title}
               </label>
-              <small className={utilStyles.lightText}>
-                {dateRange}
-              </small>
+              <small className={utilStyles.lightText}>{dateRange}</small>
               <div className={accordion.tabContent}>
-                {contributions.map((item) => {
-                  return <li>{item}</li>;
-                })}
+                <ul>
+                  {contributions.map((item) => {
+                    return (
+                      <li className={accordion.experienceListItem}>{item}</li>
+                    );
+                  })}
+                </ul>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
