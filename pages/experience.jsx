@@ -7,7 +7,6 @@ import Layout from '../components/layout';
 
 
 export default function Experience({ allPostsData }) {
-  console.log(typeof workEx);
 
   return (
     <Layout>
@@ -15,18 +14,17 @@ export default function Experience({ allPostsData }) {
         className={classnames(
           HomeStyles.mainContent,
           utilStyles.headingMd,
-          // utilStyles.padding1px,
           HomeStyles.experiencePage
         )}
       >
-        <div class={accordion.tabs}>
+        <ul className={accordion.tabs}>
           {workEx.map(({ title, dateRange, index, contributions }) => (
-            <div className={accordion.tab} key={title}>
+            <li className={accordion.tab} key={title}>
               <input type="checkbox" id={title} />
               <label className={accordion.tabLabel} for={title}>
                 {title}
               </label>
-              <small className={utilStyles.lightText}>{dateRange}</small>
+              <small className={classnames(utilStyles.lightText, accordion.durationText)}>{dateRange}</small>
               <div className={accordion.tabContent}>
                 <ul>
                   {contributions.map((item) => {
@@ -36,9 +34,9 @@ export default function Experience({ allPostsData }) {
                   })}
                 </ul>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </Layout>
   );

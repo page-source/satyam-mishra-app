@@ -1,7 +1,9 @@
-ul.ulStyles {
+.ulStyles {
   list-style-type: none;
   text-align: center;
   padding-left: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .ulStyles .navigationTab {
@@ -10,6 +12,10 @@ ul.ulStyles {
   font-size: 1.5em;
   color: blue;
   font-weight: 500;
+}
+
+.ulStyles .navigationTab.activeTab {
+  color: red;
 }
 
 .mainContent {
@@ -38,8 +44,30 @@ ul.ulStyles {
   }
 }
 
+@media (max-width: 850px) {
+  .ulStyles .navigationTab {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 550px) {
+  .ulStyles .navigationTab {
+    font-size: 1em;
+    border: 1px solid gray;
+  }
+}
+
 @media (max-width: 768px) {
   .ulStyles .navigationTab {
-    font-size: 2vh;
+    padding: 0.2rem;
+  }
+
+  .ulStyles {
+    padding-left: 0;
+    justify-content: space-evenly;
+  }
+
+  .mainContent {
+    padding: 1em;
   }
 }

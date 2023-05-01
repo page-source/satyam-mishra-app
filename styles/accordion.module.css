@@ -17,47 +17,42 @@
 .tabs {
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.5);
+  padding-left: 1em;
 }
 .tab {
   width: 100%;
   color: white;
   overflow: hidden;
+  margin-bottom: 1em;
 }
 
 .tabLabel {
   display: flex;
   padding: 1em 1em 0 1em;
-  color: rgb(75, 104, 233);
+  color: #411ee5;
   background: #ffffff;
   font-weight: bold;
   cursor: pointer;
 }
 
-.tabLabel:hover {
-  background: darken(#2c3e50, 10%);
-}
-
 .tabLabel::before {
   content: '\276F';
   width: 2em;
-  /* height: 1em; */
+  height: 1.5em;
   text-align: center;
   transition: all 0.35s;
 }
 
 .tabContent {
   max-height: 0;
-  padding: 1em 0 0 3em;
+  padding: 1em 0 0 2em;
   color: #2c3e50;
   background: white;
   transition: all 0.5s;
   font-size: 1rem;
 }
 
-/* input:checked + .tabLabel {
-  background: darken(#2c3e50, 10%);
-} */
 input:checked + .tabLabel::before {
   transform: rotate(90deg);
 }
@@ -65,5 +60,32 @@ input:checked + .tabLabel::before {
 input:checked ~ .tabContent {
   max-height: 100vh;
   font-size: 1rem;
-  /* padding: 1em; */
+}
+
+.experienceListItem {
+  padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .tabLabel {
+    font-size: 0.85em;
+  }
+  .tabContent {
+    padding: 0;
+  }
+  .durationText {
+    font-size: 0.7em;
+    /* margin-left: 2.5em; */
+  }
+}
+
+@media (max-width: 360px) {
+  .durationText {
+    font-size: 0.55em;
+  }
+}
+@media (max-width: 550px) {
+  .durationText {
+    margin-left: 9vw;
+  }
 }
