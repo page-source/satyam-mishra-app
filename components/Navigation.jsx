@@ -1,18 +1,50 @@
-import React from 'react';
-import classNames from 'classnames';
-import HomeStyles from '../styles/Home.module.css'
-import Home from '../pages';
+import React, { useState } from 'react';
+import HomeStyles from '../styles/Home.module.css';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import classnames from 'classnames';
 
-const Navigation = ({onClick}) => {
+const navigationItems = [
+  { url: 'intro', text: 'Introduction' },
+  { url: 'experience', text: 'Experience' },
+  { url: 'projects', text: 'Projects' },
+  { url: 'contact', text: 'Contact' },
+];
+
+const Navbar = () => {
+  const router = useRouter();
   return (
     <ul className={HomeStyles.ulStyles}>
-      <Link href="" className={HomeStyles.navigationTab} onClick={() => onClick(1)}>Introduction</Link>
-      <Link href="" className={HomeStyles.navigationTab} onClick={() => onClick(2)}>Experience</Link>
-      <Link href="" className={HomeStyles.navigationTab} onClick={() => onClick(3)}>Projects</Link>
-      <Link href="" className={HomeStyles.navigationTab} onClick={() => onClick(4)}>Contact</Link>
+      {navigationItems.map((singleRoute) => {
+        return (
+          <li>
+            <NavigationLink
+              key={singleRoute}
+              href={`/${singleRoute.url}`}
+              text={singleRoute.text}
+              router={router}
+            />
+          </li>
+        );
+      })}
     </ul>
-  )
-}
+  );
+};
 
-export default Navigation;
+const NavigationLink = ({ href, text, router }) => {
+  const isActive = router.pathname === (href === '/intro' ? '/' : href);
+  return (
+    <Link
+      href={href === '/intro' ? '/' : href}
+      passHref
+      className={classnames(
+        HomeStyles.navigationTab,
+        isActive && HomeStyles.activeTab
+      )}
+    >
+      {text}
+    </Link>
+  );
+};
+
+export default Navbar;
