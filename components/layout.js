@@ -1,24 +1,18 @@
-import { useState } from 'react';
 import Head from 'next/head';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
-import Link from 'next/link';
 import Navigation from './Navigation';
-import Introduction from './Introduction';
-import Experience from './Experience';
-import Contact from './Contact';
-import Projects from './Projects';
+import Image from 'next/image';
 
 const name = 'Satyam Mishra';
 export const siteTitle = 'Satyam Mishra | Front End Developer';
 
-export default function Layout({ children, home }) {
-  const [itemToShow, setItem] = useState(1);
-
+export default function Layout({ children }) {
   return (
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        <title>{siteTitle}</title>
         <meta name="description" content="Satyam Mishra Website" />
         <meta
           property="og:image"
@@ -29,11 +23,11 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <div class={styles.col1}>
+      <div className={styles.col1}>
         <header className={styles.header}>
-          <img
-            width="150px"
-            height="200px"
+          <Image
+            width={150}
+            height={200}
             src="/images/profile.jpg"
             className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
             alt={name}
@@ -42,11 +36,8 @@ export default function Layout({ children, home }) {
         </header>
       </div>
       <div className={styles.col2}>
-        <Navigation onClick={setItem} />
-        {itemToShow === 1 && <Introduction />}
-        {itemToShow === 2 && <Experience />}
-        {itemToShow === 3 && <Projects />}
-        {itemToShow === 4 && <Contact />}
+        <Navigation />
+        {children}
       </div>
     </div>
   );
