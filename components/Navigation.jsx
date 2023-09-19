@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HomeStyles from '../styles/Home.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
