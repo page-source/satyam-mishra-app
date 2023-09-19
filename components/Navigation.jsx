@@ -19,7 +19,7 @@ const Navbar = () => {
         return (
           <li>
             <NavigationLink
-              key={singleRoute}
+              key={singleRoute.text}
               href={`/${singleRoute.url}`}
               text={singleRoute.text}
               router={router}
