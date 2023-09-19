@@ -7,7 +7,7 @@ export default [
       'Worked on Application migration of Bluehost India from legacy Perl & Mason systems to a React app',
       'Worked on Newfold\'s Platform consolidation of bringing multiple brands under one umbrella',
       'Worked on improving website performance of Bluehost India taking performance scores of both Desktop and Mobile from poor to moderate scores.',
-      'As a lead dev, I improvise and finalize the scope of front end work for future sprints and create stories in JIRA',
+      'As a lead dev, I improvise and take part in finalizing the scope of front end work for future sprints',
 
     ],
   },

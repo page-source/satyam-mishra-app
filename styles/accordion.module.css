@@ -37,7 +37,7 @@
 }
 
 .tabLabel::before {
-  content: '\276F';
+  content: "\276F";
   width: 2em;
   height: 1.5em;
   text-align: center;
