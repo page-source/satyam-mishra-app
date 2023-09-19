@@ -3,13 +3,10 @@ import HomeStyles from '../styles/Home.module.css';
 import utilStyles from '../styles/utils.module.css';
 import projects from '../components/textJson/projects';
 import classnames from 'classnames';
-import Layout from '../components/layout';
 
 const Projects = () => {
   return (
-    <Layout home>
       <div className={classnames(HomeStyles.mainContent, utilStyles.headingMd)}>
-        {/* <b>My Projects</b> */}
         <ul>
           {projects.map((item) => {
             return (
@@ -27,7 +24,6 @@ const Projects = () => {
           })}
         </ul>
       </div>
-    </Layout>
   );
 };
 
