@@ -1,13 +1,21 @@
 .container {
-  max-width: 36rem;
+  max-width: 75%;
   padding: 0 1rem;
   margin: 3rem auto 6rem;
+  display: flex;
+  justify-content: center;
 }
 
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container .col2 {
+  padding-left: 4rem;
+  flex: 1;
+  max-width: 48em;
 }
 
 .headerImage {
@@ -20,6 +28,42 @@
   height: 10rem;
 }
 
+.headerHomeImage ~ h1 {
+  text-align: center;
+}
+
 .backToHome {
   margin: 3rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .container .col2 {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    margin: 3rem 1rem 6rem 1rem;
+    /* text-align: center; */
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .container .col1 {
+    padding-left: 0rem;
+  }
+
+  .container .col2 {
+    padding-left: 0rem;
+  }
 }

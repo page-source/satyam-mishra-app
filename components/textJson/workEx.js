@@ -1,0 +1,38 @@
+export default [
+  {
+    title: 'Senior Front End Developer at Newfold Digital',
+    dateRange: 'Sept 2020 to Present, Remote',
+    contributions: [
+      'Tech Stack worked on: React, JavaScript, Nextjs, HTML, CSS, Webpack',
+      'Worked on Application migration of Bluehost India from legacy Perl & Mason systems to a React app',
+      'Worked on Newfold\'s Platform consolidation of bringing multiple brands under one umbrella',
+      'Worked on improving website performance of Bluehost India taking performance scores of both Desktop and Mobile from poor to moderate scores.',
+      'As a lead dev, I improvise and finalize the scope of front end work for future sprints and create stories in JIRA',
+
+    ],
+  },
+  {
+    title: 'Front End Developer in Bed Bath & Beyond Inc',
+    dateRange: 'Nov 2018 to Sept 2020, Gurgaon',
+    contributions: [
+      'Tech Stack worked on: React, JavaScript, Nextjs, HTML, CSS, Webpack',
+      'Duration worked: 2 years',
+      'Worked on front-end side of then North American e-Commerce giant: Bed Bath & Beyond',
+      'Worked on application performance and improved performance scores by big numbers which helped business grow.',
+      'Star performer award in Q3-2019.',
+    ],
+  },
+  {
+    title: 'Front End Developer in Sapient',
+    dateRange: 'June 2014 to Nov 2018, Gurgaon',
+    contributions: [
+      'Tech Stack worked on: React, JavaScript, HTML, CSS',
+      'Duration worked: 4 years 5 months',
+      'Started my career with Sapient Consulting in Gurgaon',
+      'Major experience gained in HTML, CSS, Javascript and React',
+      "Top performer award in Freshers' batch in 2014.",
+      'Worked with multiple clients during my tenure at Sapient',
+      'Milestone achievement: Got promoted after every 2 years from Junior Associate role to Senior Associate role in a span of 4 years.',
+    ],
+  },
+];
