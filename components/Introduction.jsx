@@ -12,7 +12,7 @@ const Intro = () => {
     >
       <p>Hi I am Satyam Mishra</p>
       <p>
-        I am a Front End Developer with 8 years of experience working as a
+        I am a Front End Developer with 9 years of experience working as a
         Senior Front End Engineer at
         <a
           href="https://newfold.com"
@@ -24,9 +24,9 @@ const Intro = () => {
         </a>
       </p>
       <p>I have been working as a Front End Developer since the beginning of my career.</p>
-      <p>My skillsets are JavaScript, React, Redux, Next, HTML, CSS and much more.</p>
-      <p>I have worked on projects which needed to be migrated to modern front end tech stack.</p>
-      <p>I can lead a small team too and train them to unlock their full potential.</p>
+      <p>My skillsets include JavaScript, React, Redux, Next, HTML, CSS and much more.</p>
+      <p>I have worked on projects belonging to e-commerce, web hosting domains.</p>
+      <p>Some of my experience also involves migrating old projects to React, Redux stack.</p>
     </div>
   );
 };
