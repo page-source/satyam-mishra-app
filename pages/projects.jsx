@@ -17,7 +17,7 @@ const Projects = () => {
                   href={item.link}
                   target="_blank"
                 >
-                  Check out the extension
+                  {item.linkText}
                 </Link>
               </li>
             );
