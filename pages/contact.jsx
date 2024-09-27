@@ -9,6 +9,7 @@ const Contact = () => {
         <h2 className={utilStyles.headingLg}>Contact</h2>
         <ul className={utilStyles.list}>
           <li>{`Email: satyam.mishra333[at]gmail.com`}</li>
+          <li>{`+91-9711 757809`}</li>
 
           <li>
             <Link
