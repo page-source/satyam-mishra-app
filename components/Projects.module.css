@@ -1,0 +1,115 @@
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding-block: clamp(2rem, 4vw, 3.25rem);
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+
+.item:last-child { border-bottom: 1px solid var(--rule); }
+
+/* Accent rule that draws across the top of the hovered project */
+.item::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease);
+}
+
+.item:hover::after { transform: scaleX(1); }
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.5rem;
+}
+
+.num { color: var(--accent); }
+.year { color: var(--ink-45); font-size: 0.68rem; }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-size: var(--step-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.85rem;
+  transition: color 0.35s var(--ease);
+}
+
+.item:hover .title { color: var(--accent); }
+
+.kind {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+}
+
+.body {
+  color: var(--ink-70);
+  max-width: var(--measure);
+  line-height: 1.65;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink-45);
+  white-space: nowrap;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.link {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 720px) {
+  .item { grid-template-columns: 1fr; }
+  .aside { flex-direction: row; gap: 1rem; padding-top: 0; }
+}

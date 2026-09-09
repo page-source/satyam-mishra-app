@@ -1,34 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# satyam-mishra.vercel.app
 
-## Getting Started
-
-First, run the development server:
+My personal site. Next.js, one page.
 
 ```bash
+nvm use 22.20.0
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Node 18 is too old for Next 15 builds, use 22.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Themes
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Three: **warm** (default), light, dark. Warm is the plain `:root` block in
+`globals.css`, so `data-theme="warm"` needs no rules of its own and a no-js
+render still gets the right default. The button in the nav cycles
+warm -> light -> dark and saves the choice.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Notes to self
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- All the text is in `lib/content.js`. Update it there, not in the components.
+- Still need to add the Network Solutions store links (`NETSOL_IOS` /
+  `NETSOL_ANDROID`). They're null so the links stay hidden.
+- Hero animation is plain CSS on purpose so the heading paints before
+  hydration. Everything below the fold uses motion on scroll.
+- Warm is default on purpose, so a system dark-mode preference is not
+  auto-honoured any more. Change `themeInit` in `app/layout.jsx` if I want that
+  back.
+- `--ink-45` is as light as it can go and still clear WCAG AA for small text.
+  Don't lighten it.
+- The counters in the numbers section render their real value from the server.
+  Don't change that, a throttled tab freezes the count halfway and then the
+  page is showing a wrong number.

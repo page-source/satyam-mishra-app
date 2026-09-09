@@ -1,0 +1,53 @@
+.wrap {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding-block: 1.15rem;
+  /* fade both edges */
+  --marquee-fade: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  -webkit-mask-image: var(--marquee-fade);
+  mask-image: var(--marquee-fade);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: slide var(--marquee-duration, 42s) linear infinite;
+}
+
+.wrap:hover .track { animation-play-state: paused; }
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-right: clamp(1.5rem, 4vw, 3rem);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  white-space: nowrap;
+  color: var(--ink-70);
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--accent);
+  flex: none;
+}
+
+@keyframes slide {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+}
