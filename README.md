@@ -3,12 +3,17 @@
 My personal site. Next.js, one page.
 
 ```bash
-nvm use 22.20.0
+nvm use
 npm install
 npm run dev
 ```
 
-Node 18 is too old for Next 15 builds, use 22.
+`nvm use` reads `.nvmrc` (22.20.0). Node 18 is too old for Next 15 builds.
+
+Vercel picks its Node version from the dashboard, not from `.nvmrc`.
+Project Settings -> General -> Node.js Version has to be 22.x or 24.x;
+it was still on the discontinued 16.x from 2023 and builds failed until it was
+changed. `engines.node` in package.json records the requirement.
 
 ## Themes
 
