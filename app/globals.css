@@ -1,0 +1,224 @@
+/* ---------- tokens ---------- */
+
+/* Warm is the default, so it lives on bare :root. Light and dark override it.
+   That also means data-theme="warm" needs no block, and no-js gets warm. */
+:root {
+  --paper:        #f3ead8;
+  --paper-sunk:   #ebe0c9;
+  --paper-raised: #f9f2e3;
+
+  --ink:    #33291b;
+  --ink-70: #5d5140;
+  --ink-45: #746650;
+  --ink-25: #b6a687;
+
+  --accent:      #a94418;
+  --accent-soft: #e2d3b5;
+
+  --rule:        color-mix(in oklab, var(--ink) 14%, transparent);
+  --rule-strong: color-mix(in oklab, var(--ink) 28%, transparent);
+
+  --font-display: var(--font-instrument-serif), 'Iowan Old Style', Georgia, serif;
+  --font-sans:    var(--font-instrument-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    var(--font-jetbrains-mono), ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* fluid type scale */
+  --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
+  --step-1:  clamp(1.22rem, 1.12rem + 0.5vw, 1.5rem);
+  --step-2:  clamp(1.6rem, 1.35rem + 1.2vw, 2.4rem);
+  --step-3:  clamp(2.1rem, 1.5rem + 2.8vw, 4rem);
+
+  --gutter: clamp(1.25rem, 5vw, 5.5rem);
+  --measure: 60ch;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  color-scheme: light;
+}
+
+:root[data-theme='light'] {
+  --paper:        #faf8f5;
+  --paper-sunk:   #f3efe8;
+  --paper-raised: #fffdfa;
+
+  --ink:    #16150f;
+  --ink-70: #4c483e;
+  --ink-45: #757164;
+  --ink-25: #b5afa2;
+
+  --accent:      #b4441d;
+  --accent-soft: #e8dfd4;
+
+  --rule:        color-mix(in oklab, var(--ink) 13%, transparent);
+  --rule-strong: color-mix(in oklab, var(--ink) 26%, transparent);
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --paper:        #131209;
+  --paper-sunk:   #0d0c06;
+  --paper-raised: #1c1a10;
+
+  --ink:    #f4f0e6;
+  --ink-70: #c0b9a8;
+  --ink-45: #8b8574;
+  --ink-25: #55503f;
+
+  --accent:      #e4753f;
+  --accent-soft: #2e2617;
+
+  --rule:        color-mix(in oklab, var(--ink) 16%, transparent);
+  --rule-strong: color-mix(in oklab, var(--ink) 30%, transparent);
+
+  color-scheme: dark;
+}
+
+/* ---------- base ---------- */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 400;
+  font-family: var(--font-display);
+  letter-spacing: -0.022em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- primitives ---------- */
+
+.shell {
+  width: 100%;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* small mono label, used all over */
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+}
+
+.serif { font-family: var(--font-display); }
+.italic { font-style: italic; }
+.accent { color: var(--accent); }
+
+.rule {
+  height: 1px;
+  background: var(--rule);
+  border: 0;
+  margin: 0;
+}
+
+/* underline draws in on hover */
+.pull {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+  padding-bottom: 1px;
+}
+.pull::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(var(--pull-scale, 0));
+  transform-origin: left;
+  transition: transform 0.45s var(--ease);
+}
+.pull:hover { color: var(--accent); }
+.pull:hover::after,
+.pull:focus-visible::after { --pull-scale: 1; }
+
+/* already underlined, removes it on hover */
+.pull-out::after { --pull-scale: 1; }
+.pull-out:hover::after { --pull-scale: 0; transform-origin: right; }
+
+/* section spacing */
+.section {
+  position: relative;
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+  scroll-margin-top: 5rem;
+}
+
+/* grain overlay */
+.grain {
+  position: fixed;
+  inset: 0;
+  /* svg has its own 300x150 size, inset alone does not stretch it */
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme='light'] .grain { opacity: 0.4; }
+:root[data-theme='dark'] .grain {
+  mix-blend-mode: screen;
+  opacity: 0.16;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

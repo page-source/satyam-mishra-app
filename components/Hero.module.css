@@ -1,0 +1,120 @@
+.hero {
+  padding-top: clamp(6rem, 9vw, 8rem);
+  /* the work section brings its own top padding, don't double up */
+  padding-bottom: clamp(1rem, 2vw, 2rem);
+}
+
+.inner { width: 100%; }
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  flex: none;
+  animation: dot 2.6s var(--ease-inout) infinite;
+}
+
+@keyframes dot {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 55%, transparent); }
+  50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 0%, transparent); }
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin-top: 1.75rem;
+}
+
+.photo {
+  width: 4.1rem;
+  height: 4.1rem;
+  border-radius: 3px;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--rule-strong);
+  flex: none;
+}
+
+.name {
+  font-size: var(--step-2);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1.6rem;
+  max-width: 58ch;
+}
+
+.intro p {
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--ink-70);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin-top: 2rem;
+}
+
+.action {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Fade the block up in four small steps. Plain css so it survives with js off. */
+.step1, .step2, .step3, .step4 {
+  animation: rise 0.7s var(--ease) both;
+}
+
+.step1 { animation-delay: 0.05s; }
+.step2 { animation-delay: 0.14s; }
+.step3 { animation-delay: 0.23s; }
+.step4 { animation-delay: 0.32s; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step1, .step2, .step3, .step4 {
+    animation: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .identity { gap: 0.9rem; }
+  .photo { width: 3.4rem; height: 3.4rem; }
+}

@@ -1,0 +1,130 @@
+'use client';
+
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { work } from '../lib/content';
+import SectionHeader from './SectionHeader';
+import styles from './Work.module.css';
+
+const ease = [0.16, 1, 0.3, 1];
+
+export default function Work() {
+  // everything collapsed on load, the reader opens what they want
+  const [open, setOpen] = useState(-1);
+
+  return (
+    <section className="section" id="work">
+      <div className="shell">
+        <SectionHeader
+          index="01"
+          label="Work"
+          title="Where I have worked"
+        />
+
+        <ul className={styles.list}>
+          {work.map((job, i) => {
+            const isOpen = open === i;
+            const sameAsPrev = i > 0 && work[i - 1].company === job.company;
+
+            return (
+              <motion.li
+                key={`${job.company}-${job.role}`}
+                className={styles.row}
+                data-open={isOpen || undefined}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: i * 0.07, ease }}
+              >
+                <button
+                  type="button"
+                  className={styles.trigger}
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`job-${i}`}
+                >
+                  <span className={styles.company}>
+                    <span data-continued={sameAsPrev || undefined}>
+                      {job.company}
+                    </span>
+                  </span>
+
+                  <span className={styles.role}>{job.role}</span>
+
+                  <span className={`tag ${styles.dates}`}>
+                    {job.start} – {job.end}
+                  </span>
+
+                  <span className={styles.plus} aria-hidden="true">
+                    <span className={styles.plusBar} />
+                    <span className={`${styles.plusBar} ${styles.plusBarV}`} />
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      id={`job-${i}`}
+                      className={styles.panel}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{
+                        height: { duration: 0.55, ease },
+                        opacity: { duration: 0.35, ease },
+                      }}
+                    >
+                      <div className={styles.panelInner}>
+                        <p className={styles.summary}>{job.summary}</p>
+
+                        <ul className={styles.points}>
+                          {job.points.map((point, pi) => (
+                            <motion.li
+                              key={point}
+                              className={styles.point}
+                              initial={{ opacity: 0, x: -8 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{
+                                duration: 0.5,
+                                delay: 0.12 + pi * 0.06,
+                                ease,
+                              }}
+                            >
+                              {point}
+                            </motion.li>
+                          ))}
+                        </ul>
+
+                        <div className={styles.stack}>
+                          {job.stack.map((tech) => (
+                            <span className={styles.chip} key={tech}>
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className={styles.footNote}>
+                          <span className="tag">{job.place}</span>
+                          {job.href && (
+                            <a
+                              className={`pull ${styles.jobLink}`}
+                              href={job.href}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              {job.company} ↗
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
