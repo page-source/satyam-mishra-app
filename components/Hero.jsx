@@ -1,9 +1,9 @@
-import Image from 'next/image';
 import { profile, contact } from '../lib/content';
+import ProfilePhoto from './ProfilePhoto';
 import styles from './Hero.module.css';
 
-// No motion in here on purpose. It's the first thing that paints, and a plain
-// css fade keeps it out of the hydration path.
+// Still a server component. Only the photo needs js, and that lives in
+// ProfilePhoto. The first paint stays out of the hydration path.
 export default function Hero() {
   return (
     <section className={styles.hero}>
@@ -18,14 +18,7 @@ export default function Hero() {
 
         <div className={`${styles.identity} ${styles.step2}`}>
           {profile.photo && (
-            <Image
-              className={styles.photo}
-              src={profile.photo}
-              width={92}
-              height={92}
-              alt={profile.name}
-              priority
-            />
+            <ProfilePhoto src={profile.photo} alt={profile.name} />
           )}
           <h1 className={styles.name}>{profile.name}</h1>
         </div>
