@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { motion } from 'motion/react';
 import { work } from '../lib/content';
 import SectionHeader from './SectionHeader';
 import styles from './Work.module.css';
@@ -61,65 +61,60 @@ export default function Work() {
                   </span>
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={`job-${i}`}
-                      className={styles.panel}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{
-                        height: { duration: 0.55, ease },
-                        opacity: { duration: 0.35, ease },
-                      }}
-                    >
-                      <div className={styles.panelInner}>
-                        <p className={styles.summary}>{job.summary}</p>
+                {/* Always mounted and opened by css.
+                    Unmounting closed panels kept every achievement out of the
+                    page source, and animating the height in js meant a stalled
+                    frame loop could leave a row stuck shut. The grid 0fr -> 1fr
+                    trick expands to content height with no measuring. */}
+                <div id={`job-${i}`} className={styles.panel} inert={!isOpen}>
+                  {/* the clip has to be padding free, or box-sizing keeps the
+                      inner padding on screen when the track collapses to 0 */}
+                  <div className={styles.panelClip}>
+                    <div className={styles.panelInner}>
+                      <p className={styles.summary}>{job.summary}</p>
 
-                        <ul className={styles.points}>
-                          {job.points.map((point, pi) => (
-                            <motion.li
-                              key={point}
-                              className={styles.point}
-                              initial={{ opacity: 0, x: -8 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{
-                                duration: 0.5,
-                                delay: 0.12 + pi * 0.06,
-                                ease,
-                              }}
-                            >
-                              {point}
-                            </motion.li>
-                          ))}
-                        </ul>
+                      <ul className={styles.points}>
+                        {job.points.map((point, pi) => (
+                          <motion.li
+                            key={point}
+                            className={styles.point}
+                            initial={{ opacity: 0, x: -8 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{
+                              duration: 0.5,
+                              delay: 0.12 + pi * 0.06,
+                              ease,
+                            }}
+                          >
+                            {point}
+                          </motion.li>
+                        ))}
+                      </ul>
 
-                        <div className={styles.stack}>
-                          {job.stack.map((tech) => (
-                            <span className={styles.chip} key={tech}>
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
+                      <div className={styles.stack}>
+                        {job.stack.map((tech) => (
+                          <span className={styles.chip} key={tech}>
+                            {tech}
+                          </span>
+                        ))}
+                    </div>
 
-                        <div className={styles.footNote}>
-                          <span className="tag">{job.place}</span>
-                          {job.href && (
-                            <a
-                              className={`pull ${styles.jobLink}`}
-                              href={job.href}
-                              target="_blank"
-                              rel="noreferrer noopener"
-                            >
-                              {job.company} ↗
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    <div className={styles.footNote}>
+                      <span className="tag">{job.place}</span>
+                      {job.href && (
+                        <a
+                          className={`pull ${styles.jobLink}`}
+                          href={job.href}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          {job.company} ↗
+                        </a>
+                      )}
+                    </div>
+                    </div>
+                  </div>
+                </div>
               </motion.li>
             );
           })}

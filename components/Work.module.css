@@ -93,7 +93,24 @@
 .row[data-open] .plusBarV { transform: rotate(0deg); }
 .trigger:hover .plusBar { background: var(--accent); }
 
-.panel { overflow: hidden; }
+/* grid 0fr -> 1fr animates to the content's own height without anyone having
+   to measure it, so js only has to flip data-open on the row. */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s var(--ease);
+}
+
+.panelClip {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.row[data-open] .panel { grid-template-rows: 1fr; }
+
+@media (prefers-reduced-motion: reduce) {
+  .panel { transition: none; }
+}
 
 .panelInner {
   display: grid;

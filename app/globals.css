@@ -186,6 +186,10 @@ a {
 .pull-out::after { --pull-scale: 1; }
 .pull-out:hover::after { --pull-scale: 0; transform-origin: right; }
 
+/* Page scroll lock while any modal is open. Declarative, so it releases itself
+   however the dialog closes and can never get stuck on. */
+body:has(dialog[open]) { overflow: hidden; }
+
 /* section spacing */
 .section {
   position: relative;

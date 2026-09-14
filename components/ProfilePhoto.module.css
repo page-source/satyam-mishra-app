@@ -1,0 +1,113 @@
+.trigger {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  line-height: 0;
+  cursor: zoom-in;
+  border-radius: 3px;
+  flex: none;
+}
+
+.thumb {
+  display: block;
+  width: 4.1rem;
+  height: 4.1rem;
+  border-radius: 3px;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--rule-strong);
+  transition: border-color 0.3s var(--ease), transform 0.35s var(--ease);
+}
+
+.trigger:hover .thumb,
+.trigger:focus-visible .thumb {
+  border-color: var(--accent);
+  transform: scale(1.04);
+}
+
+.dialog {
+  position: relative;
+  border: 0;
+  padding: 0;
+  background: none;
+  overflow: visible;
+  /* explicit width, not max-width. a dialog sizes to its content, and the
+     image is 100% of the dialog, so the two size off each other and collapse */
+  width: min(92vw, 30rem);
+
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease),
+    overlay 0.3s allow-discrete, display 0.3s allow-discrete;
+}
+
+.dialog[open] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* the state it animates in from */
+@starting-style {
+  .dialog[open] {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+/* literal colour, ::backdrop can't be relied on to inherit the theme tokens */
+.dialog::backdrop {
+  background: rgba(10, 9, 5, 0.66);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease), overlay 0.3s allow-discrete,
+    display 0.3s allow-discrete;
+}
+
+.dialog[open]::backdrop { opacity: 1; }
+
+@starting-style {
+  .dialog[open]::backdrop { opacity: 0; }
+}
+
+.full {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 84vh;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid var(--rule-strong);
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.6rem);
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0.2rem 0;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e8e2d4;
+  opacity: 0.75;
+  transition: opacity 0.25s var(--ease);
+}
+
+.close:hover { opacity: 1; }
+
+@media (max-width: 560px) {
+  .thumb {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog,
+  .dialog::backdrop { transition: none; }
+  .trigger:hover .thumb { transform: none; }
+}
