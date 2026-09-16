@@ -1,4 +1,4 @@
-import { profile, contact } from '../lib/content';
+import { profile, contact, toolkit } from '../lib/content';
 import ProfilePhoto from './ProfilePhoto';
 import styles from './Hero.module.css';
 
@@ -16,17 +16,39 @@ export default function Hero() {
           <span className={`tag ${styles.place}`}>{profile.location}</span>
         </div>
 
-        <div className={`${styles.identity} ${styles.step2}`}>
-          {profile.photo && (
-            <ProfilePhoto src={profile.photo} alt={profile.name} />
-          )}
-          <h1 className={styles.name}>{profile.name}</h1>
-        </div>
+        <div className={styles.columns}>
+          <div className={styles.lead}>
+            <div className={`${styles.identity} ${styles.step2}`}>
+              {profile.photo && (
+                <ProfilePhoto src={profile.photo} alt={profile.name} />
+              )}
+              <h1 className={styles.name}>{profile.name}</h1>
+            </div>
 
-        <div className={`${styles.intro} ${styles.step3}`}>
-          {profile.intro.map((para) => (
-            <p key={para}>{para}</p>
-          ))}
+            <div className={`${styles.intro} ${styles.step3}`}>
+              {profile.intro.map((para) => (
+                <p key={para}>{para}</p>
+              ))}
+            </div>
+          </div>
+
+          {/* Skills used to be section 04, below the projects. A recruiter
+              shouldn't have to scroll past three sections to find them. */}
+          <aside className={`${styles.skills} ${styles.step3}`}>
+            <h2 className={`tag ${styles.skillsTitle}`}>Skills</h2>
+            {toolkit.map((group) => (
+              <div className={styles.group} key={group.group}>
+                <h3 className={`tag ${styles.groupName}`}>{group.group}</h3>
+                <ul className={styles.items}>
+                  {group.items.map((item) => (
+                    <li className={styles.item} key={item}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </aside>
         </div>
 
         <div className={`${styles.actions} ${styles.step4}`}>

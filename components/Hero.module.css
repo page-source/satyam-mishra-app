@@ -36,11 +36,20 @@
   50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 0%, transparent); }
 }
 
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  align-items: start;
+  margin-top: 1.75rem;
+}
+
+.lead { min-width: 0; }
+
 .identity {
   display: flex;
   align-items: center;
   gap: 1.15rem;
-  margin-top: 1.75rem;
 }
 
 .name {
@@ -61,6 +70,53 @@
   font-size: var(--step-0);
   line-height: 1.65;
   color: var(--ink-70);
+}
+
+/* ---- skills, right column ---- */
+
+.skills {
+  min-width: 0;
+  padding-top: 0.35rem;
+}
+
+.skillsTitle {
+  display: block;
+  color: var(--ink-45);
+  margin-bottom: 0.9rem;
+}
+
+.group {
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.group:last-child { margin-bottom: 0; }
+
+.groupName {
+  display: block;
+  color: var(--accent);
+  font-size: 0.62rem;
+  margin-bottom: 0.4rem;
+}
+
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.7;
+}
+
+/* inline with middots rather than chips, 17 pills would shout */
+.item {
+  display: inline;
+  font-size: 0.94rem;
+  color: var(--ink-70);
+}
+
+.item:not(:last-child)::after {
+  content: ' · ';
+  color: var(--ink-25);
 }
 
 .actions {
@@ -96,6 +152,15 @@
   .step1, .step2, .step3, .step4 {
     animation: none;
   }
+}
+
+@media (max-width: 860px) {
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .skills { padding-top: 0; }
 }
 
 @media (max-width: 560px) {

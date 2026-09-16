@@ -2,7 +2,7 @@ import Hero from '../components/Hero';
 import Work from '../components/Work';
 import Numbers from '../components/Numbers';
 import Projects from '../components/Projects';
-import Toolkit from '../components/Toolkit';
+import Education from '../components/Education';
 import Contact from '../components/Contact';
 
 export default function Page() {
@@ -12,7 +12,7 @@ export default function Page() {
       <Work />
       <Numbers />
       <Projects />
-      <Toolkit />
+      <Education />
       <Contact />
     </>
   );
