@@ -31,22 +31,12 @@
   gap: 1.5rem;
 }
 
-.brand {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-}
+.brand { line-height: 1.15; }
 
 .brandName {
   font-family: var(--font-display);
   font-size: var(--step-1);
   letter-spacing: -0.02em;
-}
-
-.brandRole {
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
-  color: var(--ink-45);
 }
 
 .links {

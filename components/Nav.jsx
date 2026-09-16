@@ -41,7 +41,6 @@ export default function Nav() {
       <div className={`shell ${styles.inner}`}>
         <a href="#top" className={styles.brand}>
           <span className={styles.brandName}>{profile.name}</span>
-          <span className={`tag ${styles.brandRole}`}>{profile.role}</span>
         </a>
 
         <nav className={styles.links} aria-label="Sections">
