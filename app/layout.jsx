@@ -26,7 +26,7 @@ const mono = JetBrains_Mono({
 });
 
 const description =
-  'Engineering manager with 12 years in frontend and 3 years leading teams. I work on consumer facing AI features across web and mobile at Newfold Digital.';
+  'Frontend development lead with 12 years of experience and 3 years leading teams. I work on consumer facing AI features across web and mobile at Newfold Digital.';
 
 export const metadata = {
   metadataBase: new URL('https://satyam-mishra.vercel.app'),
