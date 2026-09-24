@@ -203,3 +203,11 @@
     padding-left: 1.25rem;
   }
 }
+
+/* inline links inside a bullet, kept near body weight so they don't shout */
+.pointLink {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.pointLink:hover { color: var(--accent); }
