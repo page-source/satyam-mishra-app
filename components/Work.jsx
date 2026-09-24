@@ -8,6 +8,28 @@ import styles from './Work.module.css';
 
 const ease = [0.16, 1, 0.3, 1];
 
+/* A bullet is either plain text or a list of parts, where a part is a string or
+   a { label, href } link. Keeps the linking out of the copy itself. */
+function Point({ parts }) {
+  if (typeof parts === 'string') return parts;
+
+  return parts.map((part, i) =>
+    typeof part === 'string' ? (
+      <span key={i}>{part}</span>
+    ) : (
+      <a
+        key={i}
+        className={`pull ${styles.pointLink}`}
+        href={part.href}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        {part.label}
+      </a>
+    ),
+  );
+}
+
 export default function Work() {
   // everything collapsed on load, the reader opens what they want
   const [open, setOpen] = useState(-1);
@@ -76,7 +98,7 @@ export default function Work() {
                       <ul className={styles.points}>
                         {job.points.map((point, pi) => (
                           <motion.li
-                            key={point}
+                            key={pi}
                             className={styles.point}
                             initial={{ opacity: 0, x: -8 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -86,7 +108,7 @@ export default function Work() {
                               ease,
                             }}
                           >
-                            {point}
+                            <Point parts={point} />
                           </motion.li>
                         ))}
                       </ul>

@@ -65,7 +65,9 @@ export default function Contact() {
           <span className="tag">
             © {year} {profile.name}
           </span>
-          <span className="tag">Built with Next.js</span>
+          <span className="tag">
+            Built with Next.js {process.env.NEXT_PUBLIC_NEXT_VERSION}
+          </span>
           <a className={`pull ${styles.top}`} href="#top">
             <span className="tag">Back to top ↑</span>
           </a>

@@ -1,6 +1,11 @@
+const nextVersion = require('next/package.json').version;
+
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+
+  // resolved at build time so the footer never quotes a stale version
+  env: { NEXT_PUBLIC_NEXT_VERSION: nextVersion },
 
   // used to be four separate routes, now it's one page. send the old urls to
   // the right section instead of a 404.
